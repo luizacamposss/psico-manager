@@ -1,0 +1,49 @@
+body {
+    background-color: #f5f0fa;
+    color: #222;
+}
+
+.bg-purple {
+    background-color: #6f4aa8;
+}
+
+.text-purple {
+    color: #6f4aa8;
+}
+
+.hero {
+    background-color: white;
+}
+
+.card-menu {
+    display: block;
+    background: #eee4f7;
+    color: #333;
+    text-decoration: none;
+    padding: 30px;
+    border-radius: 15px;
+    height: 100%;
+    transition: 0.3s;
+    border: 1px solid #ddd;
+}
+
+.card-menu:hover {
+    transform: translateY(-5px);
+    background: #e2d3f2;
+    color: #333;
+}
+
+.btn-purple {
+    background-color: #6f4aa8;
+    color: white;
+}
+
+.btn-purple:hover {
+    background-color: #563783;
+    color: white;
+}
+
+.table-purple th {
+    background-color: #6f4aa8;
+    color: white;
+}
