@@ -1,4 +1,4 @@
-const API = "http://localhost:3000";
+const API = "psico-manager-production.up.railway.app";
 
 let editandoAgendamentoId = null;
 
