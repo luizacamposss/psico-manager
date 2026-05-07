@@ -1,4 +1,4 @@
-const API = "psico-manager-production.up.railway.app";
+const API = "https://psico-manager-production.up.railway.app";
 
 let editandoAgendamentoId = null;
 
