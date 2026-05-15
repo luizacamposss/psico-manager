@@ -361,8 +361,6 @@ async function carregarDashboard() {
 
     document.getElementById("totalPendente").innerText =
         `R$ ${Number(dados.total_pendente).toFixed(2)}`;
-
-    carregarGraficoReceitas();
 }
 
 async function carregarGraficoReceitas() {
@@ -886,6 +884,9 @@ document.addEventListener("DOMContentLoaded", () => {
     listarPacientes();
     listarAgendamentos();
     carregarDashboard();
+    carregarGraficoReceitas();
+
+    
     verificarLembretes();
 
     carregarPacientesSelect();
