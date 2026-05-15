@@ -374,6 +374,43 @@ async function carregarGraficoReceitas() {
 
     const meses = dados.map(item => item.mes);
     const totais = dados.map(item => Number(item.total));
+
+    new Chart(canvas, {
+        type: "bar",
+        data: {
+            labels: meses,
+            datasets: [{
+                label: "Receita recebida",
+                data: totais,
+                backgroundColor: "rgba(155, 89, 255, 0.8)",
+                borderColor: "#c084fc",
+                borderWidth: 2,
+                borderRadius: 12
+            }]
+        },
+        options: {
+            responsive: true,
+            animation: {
+                duration: 1500
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: "#6b21a8",
+                        font: {
+                            size: 15,
+                            weight: "bold"
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
    new Chart(canvas, {
