@@ -370,10 +370,16 @@ async function carregarGraficoReceitas() {
     const res = await fetch(`${API}/dashboard/receitas`);
     const dados = await res.json();
 
+    console.log("Dados do gráfico:", dados);
+
     const meses = dados.map(item => item.mes);
     const totais = dados.map(item => Number(item.total));
 
-    new Chart(canvas, {
+    if (window.graficoReceitasChart) {
+        window.graficoReceitasChart.destroy();
+    }
+
+    window.graficoReceitasChart = new Chart(canvas, {
         type: "bar",
         data: {
             labels: meses,
@@ -388,18 +394,13 @@ async function carregarGraficoReceitas() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             animation: {
-                duration: 1500
+                duration: 1200
             },
             plugins: {
                 legend: {
-                    labels: {
-                        color: "#6b21a8",
-                        font: {
-                            size: 15,
-                            weight: "bold"
-                        }
-                    }
+                    display: true
                 }
             },
             scales: {
@@ -928,4 +929,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (formFinanceiro) {
         formFinanceiro.addEventListener("submit", cadastrarFinanceiro);
     }
-   });
+});
