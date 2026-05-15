@@ -790,7 +790,6 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarPacientesSelect();
     carregarAgendamentosSelect();
     configurarPacienteProntuario();
-    carregarPacientes();
     carregarPsicologos();
 
     listarFinanceiro();
