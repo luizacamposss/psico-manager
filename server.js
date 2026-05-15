@@ -32,6 +32,7 @@ const usuariosRoutes = require("./routes/usuarios")(db);
 const prontuariosRoutes = require("./routes/prontuarios")(db);
 const financeiroRoutes = require("./routes/financeiro")(db);
 const tarefasRoutes = require("./routes/tarefas")(db);
+const psicologosRoutes = require("./routes/psicologos")(db);
 
 
 
@@ -42,6 +43,7 @@ app.use("/usuarios", usuariosRoutes);
 app.use("/prontuarios", prontuariosRoutes);
 app.use("/financeiro", financeiroRoutes);
 app.use("/tarefas", tarefasRoutes);
+app.use("/psicologos", psicologosRoutes);
 
 // DASHBOARD (fica aqui mesmo)
 app.get("/dashboard", (req, res) => {
