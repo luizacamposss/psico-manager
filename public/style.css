@@ -70,3 +70,44 @@ select option {
     background: #fff;
     color: #333;
 }
+
+#graficoContainer {
+    background: linear-gradient(135deg, #1e1b2e, #2d2147);
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow:
+        0 0 20px rgba(123, 75, 183, 0.4),
+        0 0 40px rgba(123, 75, 183, 0.2);
+
+    border: 2px solid rgba(155, 89, 255, 0.4);
+
+    transition: 0.3s;
+}
+
+#graficoContainer:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 0 30px rgba(155, 89, 255, 0.6),
+        0 0 60px rgba(155, 89, 255, 0.3);
+}
+
+#graficoContainer h3 {
+    color: #d8b4ff;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+canvas {
+    background: linear-gradient(135deg, #ffffff, #f4edff);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 0 25px rgba(123, 75, 183, 0.15),
+        0 0 60px rgba(123, 75, 183, 0.08);
+}
