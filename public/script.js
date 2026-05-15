@@ -304,6 +304,42 @@ async function editarAgendamento(id) {
     document.getElementById("status").value = ag.status;
 }
 
+async function carregarPacientes() {
+    const res = await fetch(`${API}/pacientes`);
+    const pacientes = await res.json();
+
+    const select = document.getElementById("paciente_id");
+
+    select.innerHTML = '<option value="">Selecione o paciente</option>';
+
+    pacientes.forEach(paciente => {
+        const option = document.createElement("option");
+
+        option.value = paciente.id;
+        option.textContent = paciente.nome;
+
+        select.appendChild(option);
+    });
+}
+
+async function carregarPsicologos() {
+    const res = await fetch(`${API}/psicologos`);
+    const psicologos = await res.json();
+
+    const select = document.getElementById("psicologo_id");
+
+    select.innerHTML = '<option value="">Selecione o psicólogo</option>';
+
+    psicologos.forEach(psicologo => {
+        const option = document.createElement("option");
+
+        option.value = psicologo.id;
+        option.textContent = psicologo.nome;
+
+        select.appendChild(option);
+    });
+}
+
 // ============================
 // DASHBOARD
 // ============================
@@ -754,6 +790,8 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarPacientesSelect();
     carregarAgendamentosSelect();
     configurarPacienteProntuario();
+    carregarPacientes();
+    carregarPsicologos();
 
     listarFinanceiro();
     carregarAgenda();

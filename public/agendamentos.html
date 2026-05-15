@@ -42,13 +42,13 @@
             <h2 class="text-purple mb-4">Novo Agendamento</h2>
 
             <form id="formAgendamento" class="row g-3">
-                <div class="col-md-4">
-                    <input class="form-control" id="paciente_id" placeholder="ID do paciente" required>
-                </div>
+                <select id="paciente_id">
+                    <option value="">Selecione o paciente</option>
+                </select>
 
-                <div class="col-md-4">
-                    <input class="form-control" id="psicologo_id" placeholder="ID do psicólogo" required>
-                </div>
+                <select id="psicologo_id">
+                    <option value="">Selecione o psicólogo</option>
+                </select>
 
                 <div class="col-md-2">
                     <input class="form-control" type="date" id="data" required>
