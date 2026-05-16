@@ -436,6 +436,8 @@ function exportarDashboardPDF() {
     const cancelados = document.getElementById("cancelados")?.innerText || "0";
     const totalRecebido = document.getElementById("totalRecebido")?.innerText || "R$ 0,00";
     const totalPendente = document.getElementById("totalPendente")?.innerText || "R$ 0,00";
+    const canvas = document.getElementById("graficoReceitas");
+    const imagemGrafico = canvas.toDataURL("image/png");
 
     doc.setFontSize(18);
     doc.text("Relatório Geral - PsicoManager", 20, 20);
@@ -451,6 +453,8 @@ function exportarDashboardPDF() {
     doc.text("Relatório gerado automaticamente pelo sistema.", 20, 115);
 
     doc.save("relatorio-psicomanager.pdf");
+
+    doc.addImage(imagemGrafico, "PNG", 15, 80, 180, 90);
 }
 
 // ============================
