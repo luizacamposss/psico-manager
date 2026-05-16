@@ -256,13 +256,14 @@ async function cadastrarAgendamento(event) {
     }
 
     document.getElementById("formAgendamento").reset();
-    listarAgendamentos();
+    editandoAgendamentoId = null;
 
     const botao = document.querySelector("#formAgendamento button[type='submit']");
-    if (botao) {
-        botao.innerText = "Cadastrar";
+    if (botao) botao.innerText = "Cadastrar";
+
+    listarAgendamentos();
 }
-}
+
 
 async function listarAgendamentos() {
     const tabela = document.getElementById("listaAgendamentos");
