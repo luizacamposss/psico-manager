@@ -5,26 +5,26 @@ module.exports = (db) => {
 
     // LISTAR
     router.get("/", (req, res) => {
-        const sql = `
-            SELECT 
-                a.id,
-                a.paciente_id,
-                a.psicologo_id,
-                p.nome AS paciente,
-                psi.nome AS psicologo,
-                a.data,
-                a.horario,
-                a.status
-            FROM agendamentos a
-            JOIN pacientes p ON a.paciente_id = p.id
-            JOIN psicologos psi ON a.psicologo_id = psi.id
-        `;
+    const sql = `
+        SELECT 
+            a.id,
+            a.paciente_id,
+            a.psicologo_id,
+            p.nome AS paciente,
+            ps.nome AS psicologo,
+            a.data,
+            a.horario,
+            a.status
+        FROM agendamentos a
+        INNER JOIN pacientes p ON a.paciente_id = p.id
+        INNER JOIN psicologos ps ON a.psicologo_id = ps.id
+    `;
 
-        db.query(sql, (err, result) => {
-            if (err) return res.status(500).send(err);
-            res.json(result);
-        });
+    db.query(sql, (err, result) => {
+        if (err) return res.status(500).json({ erro: err.message });
+        res.json(result);
     });
+});
 
     // CADASTRAR
     router.post("/", (req, res) => {
