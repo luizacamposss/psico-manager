@@ -1,118 +1,157 @@
+:root {
+    --roxo: #6f4aa8;
+    --roxo-escuro: #4f2f7f;
+    --roxo-claro: #eee4f7;
+    --lilas: #f7f2fc;
+    --branco: #ffffff;
+    --texto: #2b2433;
+    --cinza: #e5ddec;
+}
+
 body {
-    background-color: #f5f0fa;
-    color: #222;
+    background: linear-gradient(135deg, #f7f2fc, #efe6f8);
+    color: var(--texto);
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .bg-purple {
-    background-color: #6f4aa8;
+    background: linear-gradient(90deg, var(--roxo-escuro), var(--roxo));
+    box-shadow: 0 4px 18px rgba(79, 47, 127, 0.25);
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+}
+
+.nav-link {
+    color: #eee !important;
+    transition: 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #fff !important;
+    font-weight: 600;
+    transform: translateY(-1px);
 }
 
 .text-purple {
-    color: #6f4aa8;
+    color: var(--roxo);
+    font-weight: 700;
 }
 
+main .card,
 .hero {
-    background-color: white;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--cinza);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(79, 47, 127, 0.12);
 }
 
 .card-menu {
     display: block;
-    background: #eee4f7;
-    color: #333;
+    background: linear-gradient(135deg, #f3eafa, #eadcf7);
+    color: var(--texto);
     text-decoration: none;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 34px;
+    border-radius: 20px;
     height: 100%;
     transition: 0.3s;
-    border: 1px solid #ddd;
+    border: 1px solid #dfd0ee;
+    box-shadow: 0 6px 18px rgba(111, 74, 168, 0.12);
 }
 
 .card-menu:hover {
-    transform: translateY(-5px);
-    background: #e2d3f2;
-    color: #333;
+    transform: translateY(-7px);
+    background: linear-gradient(135deg, #e8d8f6, #dcc5ef);
+    box-shadow: 0 12px 28px rgba(111, 74, 168, 0.22);
+    color: var(--roxo-escuro);
 }
 
 .btn-purple {
-    background-color: #6f4aa8;
+    background: linear-gradient(135deg, var(--roxo), var(--roxo-escuro));
     color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    transition: 0.3s;
+    font-weight: 600;
 }
 
 .btn-purple:hover {
-    background-color: #563783;
+    background: linear-gradient(135deg, var(--roxo-escuro), #3e2466);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(79, 47, 127, 0.3);
+}
+
+.form-control,
+.form-select,
+select,
+textarea {
+    border-radius: 10px !important;
+    border: 1px solid #d8cde4 !important;
+    padding: 12px !important;
+    box-shadow: none !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--roxo) !important;
+    box-shadow: 0 0 0 4px rgba(111, 74, 168, 0.15) !important;
+}
+
+.table {
+    border-radius: 14px;
+    overflow: hidden;
 }
 
 .table-purple th {
-    background-color: #6f4aa8;
+    background: var(--roxo);
     color: white;
+    padding: 14px;
 }
 
-select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d0d0d0;
-    border-radius: 8px;
-    background: #fff;
-    color: #333;
-    font-size: 16px;
-    outline: none;
-    transition: 0.3s;
-    cursor: pointer;
+.table td {
+    padding: 13px;
+    vertical-align: middle;
 }
 
-select:focus {
-    border-color: #7b4bb7;
-    box-shadow: 0 0 8px rgba(123, 75, 183, 0.3);
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #faf7fd;
 }
 
-select option {
-    background: #fff;
-    color: #333;
-}
-
-#graficoContainer {
-    background: linear-gradient(135deg, #1e1b2e, #2d2147);
-    border-radius: 20px;
-    padding: 25px;
-    margin-top: 30px;
-    box-shadow:
-        0 0 20px rgba(123, 75, 183, 0.4),
-        0 0 40px rgba(123, 75, 183, 0.2);
-
-    border: 2px solid rgba(155, 89, 255, 0.4);
-
-    transition: 0.3s;
-}
-
-#graficoContainer:hover {
-    transform: translateY(-4px);
-    box-shadow:
-        0 0 30px rgba(155, 89, 255, 0.6),
-        0 0 60px rgba(155, 89, 255, 0.3);
-}
-
-#graficoContainer h3 {
-    color: #d8b4ff;
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-canvas {
+canvas,
+#graficoReceitas {
     background: linear-gradient(135deg, #ffffff, #f4edff);
-
     border-radius: 20px;
-
     padding: 20px;
-
-    box-shadow:
-        0 0 25px rgba(123, 75, 183, 0.15),
-        0 0 60px rgba(123, 75, 183, 0.08);
+    box-shadow: 0 0 25px rgba(123, 75, 183, 0.15);
 }
 
 #graficoReceitas {
     width: 100% !important;
     height: 350px !important;
+}
+
+.list-group-item {
+    border-radius: 12px !important;
+    margin-bottom: 10px;
+    border: 1px solid #e1d6ef;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .card-menu {
+        padding: 24px;
+    }
+
+    main {
+        padding: 0 10px;
+    }
 }
