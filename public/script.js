@@ -299,6 +299,8 @@ async function editarAgendamento(id) {
     const res = await fetch(`${API}/agendamentos`);
     const agendamentos = await res.json();
 
+    console.log("Agendamentos recebidos:", agendamentos);
+
     const ag = agendamentos.find(a => Number(a.id) === Number(id));
 
     if (!ag) {
