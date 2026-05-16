@@ -27,18 +27,41 @@ module.exports = (db) => {
 });
 
     // CADASTRAR
-    router.post("/", (req, res) => {
-        const { paciente_id, psicologo_id, data, horario, status } = req.body;
+   router.post("/", (req, res) => {
+    const { paciente_id, psicologo_id, data, horario, status } = req.body;
+
+    const verificarSql = `
+        SELECT * FROM agendamentos
+        WHERE psicologo_id = ?
+        AND data = ?
+        AND horario = ?
+    `;
+
+    db.query(verificarSql, [psicologo_id, data, horario], (err, result) => {
+        if (err) return res.status(500).json({ erro: err.message });
+
+        if (result.length > 0) {
+            return res.status(400).json({
+                erro: "Este psicólogo já possui um agendamento nesse dia e horário."
+            });
+        }
+
+        const inserirSql = `
+            INSERT INTO agendamentos 
+            (paciente_id, psicologo_id, data, horario, status)
+            VALUES (?, ?, ?, ?, ?)
+        `;
 
         db.query(
-            "INSERT INTO agendamentos SET ?",
-            { paciente_id, psicologo_id, data, horario, status },
+            inserirSql,
+            [paciente_id, psicologo_id, data, horario, status],
             (err) => {
-                if (err) return res.status(500).send(err);
-                res.send("Agendamento criado");
+                if (err) return res.status(500).json({ erro: err.message });
+                res.json({ mensagem: "Agendamento cadastrado" });
             }
         );
     });
+});
 
     // DELETAR (extra opcional)
     router.delete("/:id", (req, res) => {
@@ -74,18 +97,40 @@ router.get("/paciente/:paciente_id", (req, res) => {
 // ATUALIZAR AGENDAMENTO
 router.put("/:id", (req, res) => {
     const { paciente_id, psicologo_id, data, horario, status } = req.body;
+    const id = req.params.id;
 
-    const sql = `
-        UPDATE agendamentos
-        SET paciente_id = ?, psicologo_id = ?, data = ?, horario = ?, status = ?
-        WHERE id = ?
+    const verificarSql = `
+        SELECT * FROM agendamentos
+        WHERE psicologo_id = ?
+        AND data = ?
+        AND horario = ?
+        AND id <> ?
     `;
 
-    db.query(sql, [paciente_id, psicologo_id, data, horario, status, req.params.id], (err) => {
-        if (err) return res.status(500).send(err);
-        res.send("Agendamento atualizado");
+    db.query(verificarSql, [psicologo_id, data, horario, id], (err, result) => {
+        if (err) return res.status(500).json({ erro: err.message });
+
+        if (result.length > 0) {
+            return res.status(400).json({
+                erro: "Este psicólogo já possui outro agendamento nesse dia e horário."
+            });
+        }
+
+        const atualizarSql = `
+            UPDATE agendamentos
+            SET paciente_id = ?, psicologo_id = ?, data = ?, horario = ?, status = ?
+            WHERE id = ?
+        `;
+
+        db.query(
+            atualizarSql,
+            [paciente_id, psicologo_id, data, horario, status, id],
+            (err) => {
+                if (err) return res.status(500).json({ erro: err.message });
+                res.json({ mensagem: "Agendamento atualizado" });
+            }
+        );
     });
 });
-
     return router;
 };

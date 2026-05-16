@@ -236,32 +236,42 @@ async function cadastrarAgendamento(event) {
         status: document.getElementById("status").value
     };
 
+    let res;
+
     if (editandoAgendamentoId) {
-        await fetch(`${API}/agendamentos/${editandoAgendamentoId}`, {
+        res = await fetch(`${API}/agendamentos/${editandoAgendamentoId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dados)
         });
-
-        alert("Agendamento atualizado!");
-        editandoAgendamentoId = null;
     } else {
-        await fetch(`${API}/agendamentos`, {
+        res = await fetch(`${API}/agendamentos`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dados)
         });
+    }
 
+    if (!res.ok) {
+        const erro = await res.json();
+        alert(erro.erro);
+        return;
+    }
+
+    if (editandoAgendamentoId) {
+        alert("Agendamento atualizado!");
+    } else {
         alert("Agendamento cadastrado!");
     }
 
-    document.getElementById("formAgendamento").reset();
     editandoAgendamentoId = null;
 
     const botao = document.querySelector("#formAgendamento button[type='submit']");
     if (botao) botao.innerText = "Cadastrar";
 
+    document.getElementById("formAgendamento").reset();
     listarAgendamentos();
+    carregarAgenda();
 }
 
 
