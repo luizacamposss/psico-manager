@@ -41,35 +41,43 @@
         <div class="card-body">
             <h2 class="text-purple mb-4">Novo Agendamento</h2>
 
-            <form id="formAgendamento" class="row g-3">
-                <select id="paciente_id">
+           <form id="formAgendamento" class="row g-3">
+
+            <div class="col-md-4">
+                <select class="form-select" id="paciente_id" required>
                     <option value="">Selecione o paciente</option>
                 </select>
+            </div>
 
-                <select id="psicologo_id">
+            <div class="col-md-4">
+                <select class="form-select" id="psicologo_id" required>
                     <option value="">Selecione o psicólogo</option>
                 </select>
+            </div>
 
-                <div class="col-md-2">
-                    <input class="form-control" type="date" id="data" required>
-                </div>
+            <div class="col-md-2">
+                <input class="form-control" type="date" id="data" required>
+            </div>
 
-                <div class="col-md-2">
-                    <input class="form-control" type="time" id="horario" required>
-                </div>
+            <div class="col-md-2">
+                <input class="form-control" type="time" id="horario" required>
+            </div>
 
-                <div class="col-md-4">
-                    <select class="form-select" id="status">
-                        <option>Confirmada</option>
-                        <option>Pendente</option>
-                        <option>Cancelada</option>
-                    </select>
-                </div>
+            <div class="col-md-4">
+                <select class="form-select" id="status">
+                    <option value="Confirmada">Confirmada</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Cancelada">Cancelada</option>
+                </select>
+            </div>
 
-                <div class="col-md-4">
-                    <button class="btn btn-purple w-100">Cadastrar</button>
-                </div>
-            </form>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-purple w-100">
+                    Cadastrar
+                </button>
+            </div>
+
+</form>
         </div>
     </div>
 
@@ -86,6 +94,7 @@
                         <th>Data</th>
                         <th>Horário</th>
                         <th>Status</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody id="listaAgendamentos"></tbody>
