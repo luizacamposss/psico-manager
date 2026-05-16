@@ -533,3 +533,33 @@ main > * { animation: fadeUp .5s ease both; }
     main { padding: 0 10px; }
     body.vh-100 .card { width: 92% !important; padding: 1.75rem !important; }
 }
+
+#calendario {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.fc .fc-toolbar-title {
+    color: #6f4aa8;
+    font-weight: 700;
+}
+
+.fc .fc-button-primary {
+    background: #6f4aa8;
+    border-color: #6f4aa8;
+    border-radius: 8px;
+}
+
+.fc .fc-button-primary:hover {
+    background: #4f2f7f;
+    border-color: #4f2f7f;
+}
+
+.fc-event {
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 4px 6px !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
