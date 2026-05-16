@@ -294,6 +294,7 @@ async function listarAgendamentos() {
 }
 
 async function editarAgendamento(id) {
+    alert("Clicou no editar: " + id);
     const res = await fetch(`${API}/agendamentos`);
     const agendamentos = await res.json();
 
