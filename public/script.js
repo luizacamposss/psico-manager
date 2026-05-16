@@ -257,6 +257,11 @@ async function cadastrarAgendamento(event) {
 
     document.getElementById("formAgendamento").reset();
     listarAgendamentos();
+
+    const botao = document.querySelector("#formAgendamento button[type='submit']");
+    if (botao) {
+        botao.innerText = "Cadastrar";
+}
 }
 
 async function listarAgendamentos() {
@@ -302,7 +307,14 @@ async function editarAgendamento(id) {
     document.getElementById("data").value = ag.data.slice(0,10);
     document.getElementById("horario").value = ag.horario;
     document.getElementById("status").value = ag.status;
+
+     const botao = document.querySelector("#formAgendamento button[type='submit']");
+    
+    if (botao) {
+        botao.innerText = "Atualizar Agendamento";
+    }
 }
+
 
 async function carregarPacientes() {
     const res = await fetch(`${API}/pacientes`);
