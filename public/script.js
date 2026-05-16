@@ -638,6 +638,13 @@ async function listarFinanceiro() {
                 <td>${f.forma_pagamento}</td>
                 <td>${f.status}</td>
                 <td>${f.data_pagamento.slice(0,10)}</td>
+
+                <td>
+                    <button class="btn btn-sm btn-purple"
+                        onclick='gerarRecibo(${JSON.stringify(f)})'>
+                        Recibo
+                    </button>
+                </td>
             </tr>
         `;
     });
@@ -902,3 +909,41 @@ document.addEventListener("DOMContentLoaded", () => {
         formFinanceiro.addEventListener("submit", cadastrarFinanceiro);
     }
 });
+
+function gerarRecibo(financeiro) {
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    doc.setFontSize(20);
+    doc.text("RECIBO DE PAGAMENTO", 55, 20);
+
+    doc.setFontSize(12);
+
+    doc.text(`Paciente: ${financeiro.paciente}`, 20, 50);
+
+    doc.text(`Valor: R$ ${financeiro.valor}`, 20, 65);
+
+    doc.text(
+        `Forma de pagamento: ${financeiro.forma_pagamento}`,
+        20,
+        80
+    );
+
+    doc.text(`Status: ${financeiro.status}`, 20, 95);
+
+    doc.text(
+        `Data: ${financeiro.data_pagamento.slice(0,10)}`,
+        20,
+        110
+    );
+
+    doc.text(
+        "Documento gerado automaticamente pelo PsicoManager.",
+        20,
+        150
+    );
+
+    doc.save("recibo.pdf");
+}
