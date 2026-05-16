@@ -595,11 +595,12 @@ async function cadastrarFinanceiro(event) {
     event.preventDefault();
 
     const dados = {
-        paciente_id: document.getElementById("paciente_id").value,
-        valor: document.getElementById("valor").value,
-        forma_pagamento: document.getElementById("forma_pagamento").value,
-        status: document.getElementById("status").value
-    };
+    paciente_id: document.getElementById("paciente_id").value,
+    agendamento_id: document.getElementById("agendamento_id").value || null,
+    valor: document.getElementById("valor").value,
+    forma_pagamento: document.getElementById("forma_pagamento").value,
+    status: document.getElementById("status").value
+};
 
     const res = await fetch(`${API}/financeiro`, {
         method: "POST",
@@ -671,6 +672,32 @@ async function carregarAgenda() {
     });
 
     calendar.render();
+}
+
+async function configurarFinanceiroAgendamento() {
+    const pacienteSelect = document.getElementById("paciente_id");
+    const agendamentoSelect = document.getElementById("agendamento_id");
+
+    if (!pacienteSelect || !agendamentoSelect) return;
+
+    pacienteSelect.addEventListener("change", async () => {
+        const pacienteId = pacienteSelect.value;
+
+        agendamentoSelect.innerHTML = `<option value="">Selecione o agendamento</option>`;
+
+        if (!pacienteId) return;
+
+        const res = await fetch(`${API}/agendamentos/paciente/${pacienteId}`);
+        const agendamentos = await res.json();
+
+        agendamentos.forEach(a => {
+            agendamentoSelect.innerHTML += `
+                <option value="${a.id}">
+                    ${a.data ? a.data.slice(0, 10) : ""} - ${a.horario} - ${a.status}
+                </option>
+            `;
+        });
+    });
 }
 
 // ============================
@@ -840,6 +867,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarPsicologos();
 
     listarFinanceiro();
+    configurarFinanceiroAgendamento();
     carregarAgenda();
     listarTarefas();
 

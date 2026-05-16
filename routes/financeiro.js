@@ -24,15 +24,15 @@ module.exports = (db) => {
     });
 
     router.post("/", (req, res) => {
-        const { paciente_id, valor, forma_pagamento, status } = req.body;
+        const { paciente_id, agendamento_id, valor, forma_pagamento, status } = req.body;
 
-        const sql = `
-            INSERT INTO financeiro 
-            (paciente_id, valor, forma_pagamento, status)
-            VALUES (?, ?, ?, ?)
+       const sql = `
+            INSERT INTO financeiro
+            (paciente_id, agendamento_id, valor, forma_pagamento, status, data_pagamento)
+            VALUES (?, ?, ?, ?, ?, CURDATE())
         `;
 
-        db.query(sql, [paciente_id, valor, forma_pagamento, status], (err) => {
+        db.query(sql, [paciente_id, agendamento_id, valor, forma_pagamento, status], (err) => {
             if (err) return res.status(500).json({ erro: err.message });
             res.json({ mensagem: "Pagamento registrado" });
         });
