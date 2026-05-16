@@ -295,26 +295,31 @@ async function listarAgendamentos() {
 
 async function editarAgendamento(id) {
     alert("Clicou no editar: " + id);
+
     const res = await fetch(`${API}/agendamentos`);
     const agendamentos = await res.json();
 
-    const ag = agendamentos.find(a => a.id === id);
+    const ag = agendamentos.find(a => Number(a.id) === Number(id));
 
-    if (!ag) return;
+    if (!ag) {
+        alert("Agendamento não encontrado.");
+        return;
+    }
 
-    editandoAgendamentoId = id;
+    editandoAgendamentoId = ag.id;
 
-    document.getElementById("paciente_id").value = ag.paciente_id;
-    document.getElementById("psicologo_id").value = ag.psicologo_id;
-    document.getElementById("data").value = ag.data.slice(0,10);
-    document.getElementById("horario").value = ag.horario;
+    document.getElementById("paciente_id").value = String(ag.paciente_id);
+    document.getElementById("psicologo_id").value = String(ag.psicologo_id);
+    document.getElementById("data").value = ag.data.slice(0, 10);
+    document.getElementById("horario").value = ag.horario.slice(0, 5);
     document.getElementById("status").value = ag.status;
 
-     const botao = document.querySelector("#formAgendamento button[type='submit']");
-    
-    if (botao) {
-        botao.innerText = "Atualizar Agendamento";
-    }
+    const botao = document.querySelector("#formAgendamento button[type='submit']");
+    if (botao) botao.textContent = "Atualizar Agendamento";
+
+    document.getElementById("formAgendamento").scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 
