@@ -370,8 +370,6 @@ async function carregarGraficoReceitas() {
     const res = await fetch(`${API}/dashboard/receitas`);
     const dados = await res.json();
 
-    console.log("Dados do gráfico:", dados);
-
     const meses = dados.map(item => item.mes);
     const totais = dados.map(item => Number(item.total));
 
@@ -398,11 +396,6 @@ async function carregarGraficoReceitas() {
             animation: {
                 duration: 1200
             },
-            plugins: {
-                legend: {
-                    display: true
-                }
-            },
             scales: {
                 y: {
                     beginAtZero: true
@@ -411,95 +404,6 @@ async function carregarGraficoReceitas() {
         }
     });
 }
-
-   new Chart(canvas, {
-    type: "bar",
-
-    data: {
-        labels: meses,
-
-        datasets: [{
-            label: "Receita recebida",
-
-            data: totais,
-
-            backgroundColor: [
-                "rgba(155, 89, 255, 0.8)"
-            ],
-
-            borderColor: [
-                "#c084fc"
-            ],
-
-            borderWidth: 2,
-            borderRadius: 12,
-            hoverBackgroundColor: "#d8b4fe",
-            hoverBorderColor: "#ffffff"
-        }]
-    },
-
-    options: {
-        responsive: true,
-
-        animation: {
-            duration: 1800,
-            easing: "easeOutBounce"
-        },
-
-        plugins: {
-            legend: {
-                display: true,
-
-                labels: {
-                    color: "#5b21b6",
-                    font: {
-                        size: 16,
-                        weight: "bold"
-                    }
-                }
-            },
-
-            tooltip: {
-                backgroundColor: "#2d1b4e",
-                titleColor: "#fff",
-                bodyColor: "#fff",
-                borderColor: "#c084fc",
-                borderWidth: 1
-            }
-        },
-
-        scales: {
-            x: {
-                ticks: {
-                    color: "#6b21a8",
-                    font: {
-                        size: 14
-                    }
-                },
-
-                grid: {
-                    color: "rgba(123, 75, 183, 0.08)"
-                }
-            },
-
-            y: {
-                beginAtZero: true,
-
-                ticks: {
-                    color: "#6b21a8",
-                    font: {
-                        size: 14
-                    }
-                },
-
-                grid: {
-                    color: "rgba(123, 75, 183, 0.1)"
-                }
-            }
-        }
-    }
-});
-
 function exportarDashboardPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
